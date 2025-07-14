@@ -1,0 +1,21 @@
+[project]
+name = "brukarze"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "daphne>=4.2.1",
+    "datastar-py",
+    "django>=5.2.4",
+]
+
+[dependency-groups]
+dev = [
+    "djade>=1.4.0",
+    "djlint>=1.36.4",
+    "ruff>=0.12.3",
+]
+
+[tool.uv.sources]
+datastar-py = { git = "https://github.com/starfederation/datastar.git", subdirectory = "sdk/python", rev = "develop" }

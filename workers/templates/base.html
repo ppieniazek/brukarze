@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="{% static 'css/pico.min.css' %}">
+    <script type="module" src="{% static 'js/datastar.js' %}"></script>
+    <title>
+      {% block title %}
+      {% endblock title %}
+    </title>
+  </head>
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li>
+            <strong>Acme Corp</strong>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a href="#">Services</a>
+          </li>
+          <li>
+            <button class="secondary">Products</button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      {% block content %}
+      {% endblock content %}
+    </main>
+  </body>
+</html>
