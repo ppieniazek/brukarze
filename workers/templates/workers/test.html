@@ -3,6 +3,17 @@
   TEST
 {% endblock title %}
 {% block content %}
-  <h1>Hello</h1>
-  {{ xd }}
+  <h1>Synchronicznie wyrenderowana strona</h1>
+  <p>
+    Poniższy zegar jest aktualizowany w czasie rzeczywistym przez asynchroniczny
+    widok.
+  </p>
+  <div class="card"
+       data-on-load="@get('/time-stream')"
+       data-signals="{currentTime: 'Czekam...'}">
+    <h3>
+      Aktualny czas:
+      <span data-text="$currentTime"></span>
+    </h3>
+  </div>
 {% endblock content %}
