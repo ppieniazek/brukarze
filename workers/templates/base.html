@@ -17,24 +17,31 @@
       <nav>
         <ul>
           <li>
-            <strong>Acme Corp</strong>
+            <strong>Brukarze App</strong>
           </li>
         </ul>
         <ul>
-          <li>
-            <a href="#">About</a>
-          </li>
-          <li>
-            <a href="#">Services</a>
-          </li>
-          <li>
-            <button class="secondary">Products</button>
-          </li>
+          {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'dashboard' %}">Panel</a>
+            </li>
+            <li>
+              <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <input type="submit" class="secondary outline" value="Wyloguj">
+              </form>
+            </li>
+          {% else %}
+            <li>
+              <a href="{% url 'login' %}">Zaloguj</a>
+            </li>
+          {% endif %}
         </ul>
       </nav>
       <hr>
     </header>
     <main class="container">
+
       {% block content %}
       {% endblock content %}
     </main>

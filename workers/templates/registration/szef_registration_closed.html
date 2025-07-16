@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Rejestracja Zamknięta{% endblock %}
+
+{% block content %}
+  <article>
+    <header>
+      <h2>Rejestracja dla konta 'Szef' jest zamknięta.</h2>
+    </header>
+    <p>Nowi użytkownicy ('Brygadziści') mogą być dodani tylko przez zalogowanego Szefa.</p>
+    <a href="{% url 'login' %}" role="button">Przejdź do logowania</a>
+  </article>
+{% endblock content %}

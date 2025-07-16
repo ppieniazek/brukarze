@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Rejestracja Szefa{% endblock %}
+
+{% block content %}
+  <article>
+    <header>
+      <h2>Rejestracja Szefa</h2>
+    </header>
+    <p>Ten formularz jest przeznaczony do rejestracji jednego, głównego konta "Szefa".</p>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Zarejestruj</button>
+    </form>
+  </article>
+{% endblock content %}
