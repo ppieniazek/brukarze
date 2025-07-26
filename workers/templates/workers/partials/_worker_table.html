@@ -1,0 +1,19 @@
+<tbody id="worker-table">
+  {% for worker in workers %}
+    <tr>
+      <td>{{ worker.first_name }}</td>
+      <td>{{ worker.last_name }}</td>
+      <td>{{ worker.hourly_wage }} zł</td>
+      <td>{{ worker.created_at|date:"d.m.Y" }}</td>
+      <td>{{ worker.is_active|yesno:'Aktywny, Nieaktywny' }}</td>
+      <td>
+        <button class="outline secondary">Edytuj</button>
+        <button class="outline contrast">Usuń</button>
+      </td>
+    </tr>
+  {% empty %}
+    <tr>
+      <td colspan="4">Nie znaleziono pracowników</td>
+    </tr>
+  {% endfor %}
+</tbody>

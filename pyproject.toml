@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "daphne>=4.2.1",
-    "datastar-py",
+    "datastar-py>=0.6.2",
     "django>=5.2.4",
 ]
 
@@ -16,6 +16,3 @@ dev = [
     "djlint>=1.36.4",
     "ruff>=0.12.3",
 ]
-
-[tool.uv.sources]
-datastar-py = { git = "https://github.com/starfederation/datastar.git", subdirectory = "sdk/python", rev = "develop" }

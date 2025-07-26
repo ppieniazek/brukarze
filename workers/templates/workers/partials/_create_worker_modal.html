@@ -1,0 +1,16 @@
+<dialog data-on-load="$worker_modal=false" data-attr-open="$worker_modal">
+  <article>
+    <header>
+      <h1>Utwórz Nowego Pracownika</h1>
+    </header>
+    {{ form.as_p }}
+    <footer>
+      <fieldset class="grid">
+        <button class="outline secondary"
+                data-on-click="$worker_modal=false"
+                type="reset">Anuluj</button>
+        <button class="outline" type="submit">Zatwierdź</button>
+      </fieldset>
+    </footer>
+  </article>
+</dialog>

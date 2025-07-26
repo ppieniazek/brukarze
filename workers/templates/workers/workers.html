@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Lista Pracowników
+{% endblock title %}
+
+{% block content %}
+  <hgroup>
+    <h1 id="xd">Pracownicy</h1>
+    <h2>Lista pracowników.</h2>
+  </hgroup>
+  <div class="grid">
+    <form>
+      <input type="search"
+             placeholder="Wyszukaj..."
+             data-bind-search
+             data-on-input__debounce.200ms="@get('/workers/search/')" />
+    </form>
+  </div>
+  <div class="overflow-auto">
+    <table class="striped">
+      <thead>
+        <tr>
+          <th scope="col">Imię</th>
+          <th scope="col">Nazwisko</th>
+          <th scope="col">Stawka</th>
+          <th scope="col">Data dodania</th>
+          <th scope="col">Status</th>
+          <th scope="col">Akcje</th>
+        </tr>
+      </thead>
+      {% include 'workers/partials/_worker_table.html' %}
+    </table>
+  </div>
+  <button class="outline" data-on-click="$worker_modal=true">Dodaj nowego pracownika</button>
+  {% include 'workers/partials/_create_worker_modal.html' %}
+  <dialog data-on-load="$worker_modal=false" data-attr-open="$worker_modal">
+    <article>
+      <header>
+        <h1 id="worker-form-title">Utwórz Nowego Pracownika</h1>
+      </header>
+      <form data-on-submit__prevent="@post('/workers/create/', {contentType: 'form'})">
+        <div id="worker-form">{% include 'workers/partials/_worker_form.html' %}</div>
+        <footer>
+          <fieldset class="grid">
+            <input class="outline secondary"
+                   data-on-click="$worker_modal=false"
+                   type="reset"
+                   value="Anuluj">
+            <input class="outline" type="submit" value="Zatwierdź">
+          </fieldset>
+        </footer>
+      </form>
+    </article>
+  </dialog>
+{% endblock content %}

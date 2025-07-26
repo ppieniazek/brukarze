@@ -16,4 +16,8 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     # Main views
     path("", views.dashboard, name="dashboard"),
+    # Szef views
+    path("workers/", views.worker_list, name="worker_list"),
+    path("workers/search/", views.worker_search, name="worker_search"),
+    path("workers/create/", views.worker_create, name="worker_create"),
 ]
