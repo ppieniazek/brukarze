@@ -144,3 +144,56 @@ def worker_create(request):
             "workers/partials/_worker_form.html", {"form": form}, request=request
         )
         return DatastarResponse(SSE.patch_elements(form_html, "#worker-form"))
+
+
+@require_http_methods(["POST", "GET"])
+def worker_edit(request, worker_id):
+    if "Datastar-Request" not in request.headers:
+        return DatastarResponse()
+
+    if request.method == "POST":
+        form = WorkerEditForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            workers = Worker.objects.all().order_by("is_active", "last_name")
+            worker_table = render_to_string(
+                "workers/partials/_worker_table.html", {"workers": workers}
+            )
+            default_form = WorkerCreateForm()
+            default_form_html = render_to_string(
+                "workers/partials/_worker_form.html",
+                {"form", default_form},
+                request=request,
+            )
+            return DatastarResponse(
+                (
+                    SSE.patch_elements(
+                        '<h1 id="worker-form-title">Utwórz Nowego Pracownika</h1>',
+                        "#worker-form-title",
+                    ),
+                    SSE.patch_signals({"worker_modal": False}),
+                    SSE.patch_elements(worker_table, "#worker-table"),
+                    SSE.patch_elements(default_form_html, "#worker-form"),
+                )
+            )
+        else:
+            form_html = render_to_string(
+                "workers/partials/_worker_form.html", {"form": form}, request=request
+            )
+            return DatastarResponse(SSE.patch_elements(form_html, "#worker-form"))
+    else:
+        form = WorkerEditForm()
+        form_html = render_to_string(
+            "workers/partials/_worker_form.html", {"form", form}
+        )
+        return DatastarResponse(
+            (
+                SSE.patch_elements(
+                    '<h1 id="worker-form-title">Edytuj Pracownika</h1>',
+                    "#worker-form-title",
+                ),
+                SSE.patch_signals({"worker_modal": True}),
+                SSE.patch_elements(form_html, "#worker-form"),
+            )
+        )

@@ -20,4 +20,5 @@ urlpatterns = [
     path("workers/", views.worker_list, name="worker_list"),
     path("workers/search/", views.worker_search, name="worker_search"),
     path("workers/create/", views.worker_create, name="worker_create"),
+    path("workers/edit/<int:pk>/", views.worker_edit, name="worker_edit"),
 ]
